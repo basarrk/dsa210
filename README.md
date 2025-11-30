@@ -2,21 +2,21 @@
 
 # Abstract
 
-This project investigates algal growth patterns using two complementary datasets: (1) a controlled laboratory algae‐growth experiment and (2) the COIL 1999 environmental water-quality dataset. The goal is to apply core data-science techniques—including data cleaning, exploratory data analysis (EDA), outlier assessment, feature transformation, and hypothesis testing—to understand how environmental variables influence algal populations. The analysis reveals two contrasting systems: a laboratory dataset dominated by strong non-linear (unimodal) light–response behavior, and an environmental dataset with heavy skew, extreme nutrient variability, and moderate correlations among water-quality indicators. A Pearson hypothesis test confirms the absence of linear effects of light on population in Dataset 1, supporting the conclusion that the system is governed by non-linear ecological responses. The project demonstrates how data preprocessing and statistical testing shape the interpretability of biological data.
+This project investigates algal growth patterns using two complementary datasets: (1) a controlled laboratory algae‐growth experiment and (2) the COIL 1999 environmental water-quality dataset. The goal is to apply core data-science techniques including data cleaning, exploratory data analysis (EDA), outlier assessment, feature transformation, and hypothesis testing—to understand how environmental variables influence algal populations. The analysis reveals two contrasting systems: a laboratory dataset dominated by strong non-linear (unimodal) light–response behavior, and an environmental dataset with heavy skew, extreme nutrient variability, and moderate correlations among water-quality indicators. A Pearson hypothesis test confirms the absence of linear effects of light on population in Dataset 1, supporting the conclusion that the system is governed by non-linear ecological responses. The project demonstrates how data preprocessing and statistical testing shape the interpretability of biological data.
 
 # Motivation
 
 I selected algae growth datasets because my background and ongoing work in biotechnology involve studying algae as biological systems. Since I already conduct laboratory research on algal biology, this project allowed me to connect data-science methods with a domain I am personally involved in. Algae are sensitive to environmental factors such as light and nutrient availability, making them ideal for exploring how experimental variables shape biological responses. This project therefore served both as a technical exercise in EDA and hypothesis testing, and as a way to deepen my understanding of the environmental drivers influencing algae growth.
 
 # Data Sources
-Dataset 1 — Research on Algae Growth in the Laboratory
+Dataset 1: Research on Algae Growth in the Laboratory
 Source: Kaggle
 Link: https://www.kaggle.com/datasets/rukenmissonnier/research-on-algae-growth-in-the-laboratory/data
 
 Description:
 A controlled experimental dataset with ~9,800 measurements of algal population under varying environmental conditions including Light, Nitrate, Iron, Phosphate, Temperature, pH, and CO₂. The dataset uses fixed treatment levels for each factor, producing a full-factorial design that enables analysis of multi-variable effects on growth.
 
-Dataset 2 — COIL 1999 Competition Data
+Dataset 2: COIL 1999 Competition Data
 Source: UCI Machine Learning Repository
 Link: https://archive.ics.uci.edu/dataset/118/coil+1999+competition+data
 
