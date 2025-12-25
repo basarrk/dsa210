@@ -283,3 +283,7 @@ plt.show()
 
 Both datasets are analyzed and prepared for further processes in the project.
 """
+
+from google.colab import files
+df_coil.to_csv('df_coil_processed.csv', index=False)
+files.download('df_coil_processed.csv')
