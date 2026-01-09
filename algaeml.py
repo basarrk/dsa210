@@ -82,7 +82,7 @@ models.append((
     RandomForestRegressor(random_state=42)
 ))
 
-from sklearn.model_selection import cross_validate
+from sklearn.model_selection import cross_validate, cross_val_predict
 
 all_results = []
 
@@ -102,11 +102,14 @@ for target_name, y in targets:
         cv_results = cross_validate(
             model, X, y, cv=kf, scoring=scoring, return_train_score=False
         )
+        y_predicted = cross_val_predict(model, X, y, cv=kf)
 
         all_results.append({
             'target': target_name,
             'model': model_name,
-            'scores': cv_results
+            'scores': cv_results,
+            'y_actual': y.values,
+            'y_predicted': y_predicted
         })
 
 all_results
@@ -151,3 +154,37 @@ results_df
 
 The results validated the initial expectation for chloropyll, as a direct biochemical variable, is a better target for ML modelling with biochemical features.
 """
+
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Find the results for Random Forest Regressor for Mean_Chlorophyll
+rf_chlorophyll_results = next(item for item in all_results if item['target'] == 'Mean_Chlorophyll' and item['model'] == 'Random Forest Regressor')
+
+# Extract actual and predicted values
+y_actual_chlorophyll = rf_chlorophyll_results['y_actual']
+y_predicted_chlorophyll = rf_chlorophyll_results['y_predicted']
+
+# Create scatter plot for Mean_Chlorophyll
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x=y_actual_chlorophyll, y=y_predicted_chlorophyll, alpha=0.7)
+plt.plot([min(y_actual_chlorophyll), max(y_actual_chlorophyll)], [min(y_actual_chlorophyll), max(y_actual_chlorophyll)], 'r--', lw=2) # Line for perfect prediction
+plt.title('Predicted vs. Actual Mean_Chlorophyll (Random Forest Regressor)')
+plt.xlabel('Actual Mean_Chlorophyll')
+plt.ylabel('Predicted Mean_Chlorophyll')
+plt.grid(True)
+plt.show()
+
+rf_mean_freq_results = next(item for item in all_results if item['target'] == 'mean_freq' and item['model'] == 'Random Forest Regressor')
+
+y_actual_mean_freq = rf_mean_freq_results['y_actual']
+y_predicted_mean_freq = rf_mean_freq_results['y_predicted']
+
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x=y_actual_mean_freq, y=y_predicted_mean_freq, alpha=0.7)
+plt.plot([min(y_actual_mean_freq), max(y_actual_mean_freq)], [min(y_actual_mean_freq), max(y_actual_mean_freq)], 'r--', lw=2) # Line for perfect prediction
+plt.title('Predicted vs. Actual Mean Frequency (Random Forest Regressor)')
+plt.xlabel('Actual Mean Frequency')
+plt.ylabel('Predicted Mean Frequency')
+plt.grid(True)
+plt.show()
